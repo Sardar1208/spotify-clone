@@ -1,16 +1,28 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
-import SongTile from "./Screens/HomePage";
+import React, { useState } from "react";
+import HomePage from "./Screens/HomePage";
+import { AppContext } from "./AppContext";
 import { NativeBaseProvider, Box } from "native-base";
 import { StyleSheet, Text, View } from "react-native";
 
 export default function App() {
+
+  const [activePage, setActivePage] = useState("home");
+
+  const AppState = {
+    activePage,
+    setActivePage
+  }
+
   return (
-    <NativeBaseProvider>
-      <Box bg={"gray.900"} safeArea>
-        <SongTile />
-      </Box>
-    </NativeBaseProvider>
+    <AppContext.Provider value={AppState}>
+      <NativeBaseProvider>
+        <Box bg={"gray.900"} safeArea>
+          <StatusBar style="light" />
+          <HomePage />
+        </Box>
+      </NativeBaseProvider>
+    </AppContext.Provider>
   );
 }
 

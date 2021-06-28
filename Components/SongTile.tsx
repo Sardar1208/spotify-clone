@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Text, VStack, Image } from "native-base";
 
 interface tileProps {
-  image: Function;
+  image: string;
   creators: string;
 }
 
@@ -17,7 +17,9 @@ export default function SongTile({ image, creators }: tileProps) {
           <Box width={40} height={40}>
             <Image
               // @ts-ignore
-              source={image}
+              source={{
+                uri: image
+              }}
               alt="alt"
               size="full"
               overflow={"hidden"}
