@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import SongTile from "../Components/SongTile";
 import ListTitle from "../Components/ListTitle";
 import axios from "axios";
-import { Box, Text, VStack, Image, HStack } from "native-base";
+import { Box, Text, VStack, Image, HStack, ScrollView } from "native-base";
 
 interface listProps {
   type: string;
@@ -23,16 +23,20 @@ export default function SongList({
   //@ts-ignore
   useEffect(() => {
     async function fetchData() {
-      //   const result = await fetch("https://source.unsplash.com/random");
-      //   const res = await result.json();
-      //   console.log("image", res);
-
-      axios.get("https://source.unsplash.com/random").then(function (response) {
-        // handle success
-        console.log("image:", response);
-        //@ts-ignore
-        setImages([...images, response.config.url])
-      });
+      //@ts-ignore
+      let temp = [];
+      for (let i = 0; i < 5; i++) {
+        await axios
+          .get("https://source.unsplash.com/random?sig=" + i)
+          .then(function (response) {
+            console.log("image:", response);
+            //@ts-ignore
+            temp.push(response.config.url);
+            console.log("images: ", images);
+          });
+      }
+      //@ts-ignore
+      setImages(temp);
     }
     fetchData();
   }, []);
@@ -46,16 +50,19 @@ export default function SongList({
         artist_name={artist_name}
         artist_img={require("../assets/Images/temp.jpg")}
       />
-      <HStack space={4}>
-        <SongTile
-          image={images[0]}
-          creators={"Eren Yager, Miskasa Ackerman, Levi Ackerman"}
-        />
-        {/* <SongTile
-          image={require("../assets/Images/temp.jpg")}
-          creators={"Eren Yager, Miskasa Ackerman, Levi Ackerman"}
-        /> */}
-      </HStack>
+      <ScrollView horizontal={true}>
+        <HStack space={4}>
+          {images.map((image, key) => {
+            return (
+              <SongTile
+                key={key}
+                image={image}
+                creators={"Eren Yager, Miskasa Ackerman, Levi Ackerman"}
+              />
+            );
+          })}
+        </HStack>
+      </ScrollView>
     </Box>
   );
 }
