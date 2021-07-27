@@ -20,16 +20,11 @@ export default function PlayPage() {
   return (
     <Box
       safeArea
+      w={"100%"}
       h={"100%"}
       _web={{ h: "100vh" }}
-      mx={4}
-      bg={{
-        linearGradient: {
-          colors: ["gray.300", "white"],
-          start: [0, 0],
-          end: [1, 0],
-        },
-      }}
+      px={4}
+      bg={"gray.900"}
     >
       <HStack d={"flex"} justifyContent={"space-between"} alignItems={"center"}>
         <Box>

@@ -4,9 +4,13 @@ import * as VectorIcons from "@expo/vector-icons";
 import SearchCategoryCard from "../Components/SearchCategoryCard";
 import { Box, Text, VStack, Image, HStack, Input, Icon } from "native-base";
 
-export default function Search() {
+interface searchProps {
+  navigation?: any;
+}
+
+export default function Search({ navigation }: searchProps) {
   return (
-    <Box safeArea h={"100%"} _web={{ h: "100vh" }}>
+    <Box safeArea h={"100%"} _web={{ h: "100vh" }} bg={"gray.900"}>
       <Box mx={4} mt={4} flex={1}>
         {/* Search component */}
         <Text color={"white"} fontSize={32} fontWeight={"bold"} mb={2}>
@@ -41,7 +45,7 @@ export default function Search() {
 
       {/* Bottom navigation */}
       <Box>
-        <BotttomNav />
+        <BotttomNav navigation={navigation}/>
       </Box>
     </Box>
   );
