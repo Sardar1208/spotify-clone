@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import HomePage from "./Screens/HomePage";
 import Search from "./Screens/Search";
 import PlayPage from "./Screens/PlayPage";
+import Library from "./Screens/Library";
 import { AppContext } from "./AppContext";
 import { NativeBaseProvider, Box } from "native-base";
 import { StyleSheet, Text, View } from "react-native";
@@ -32,8 +33,8 @@ export default function App() {
         <NativeBaseProvider>
           <Box bg={"gray.900"} h="100%" _web={{h:"100vh"}} w="100%" safeArea>
             <StatusBar style="light" />
-            <Stack.Navigator initialRouteName="Play" headerMode={"none"}>
-              <Stack.Screen name="Home" component={HomePage}/>
+            <Stack.Navigator initialRouteName="Home" headerMode={"none"}>
+              <Stack.Screen name="Home" component={Library}/>
               <Stack.Screen name="Search" component={Search} />
               <Stack.Screen name="Play" component={PlayPage} />
             </Stack.Navigator>

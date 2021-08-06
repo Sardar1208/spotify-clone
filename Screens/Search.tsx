@@ -1,14 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import BotttomNav from "../Components/BottomNav";
 import * as VectorIcons from "@expo/vector-icons";
 import SearchCategoryCard from "../Components/SearchCategoryCard";
+import { StyleSheet } from "react-native";
 import { Box, Text, VStack, Image, HStack, Input, Icon } from "native-base";
+import { backgroundColor, color, style } from "styled-system";
 
 interface searchProps {
   navigation?: any;
 }
 
 export default function Search({ navigation }: searchProps) {
+  const [searchColor, setSearchColor] = useState("white");
+
+  let styles = StyleSheet.create({
+    searchBar: {
+      backgroundColor: searchColor,
+    },
+  });
+
   return (
     <Box safeArea h={"100%"} _web={{ h: "100vh" }} bg={"gray.900"}>
       <Box mx={4} mt={4} flex={1}>
@@ -17,20 +27,25 @@ export default function Search({ navigation }: searchProps) {
           Search
         </Text>
 
-        <Input
-          InputLeftElement={
-            <Icon
-              as={<VectorIcons.Ionicons name={"search"} />}
-              size="md"
-              m={2}
-              color={"gray.400"}
-            />
-          }
-          bg={"white"}
-          fontWeight={"bold"}
-          placeholder="Artists, songs, or podcasts" // mx={4}
-          placeholderTextColor={"gray.600"}
-        />
+        <Box style={styles.searchBar}>
+          <Input
+            InputLeftElement={
+              <Icon
+                as={<VectorIcons.Ionicons name={"search"} />}
+                size="md"
+                m={2}
+                color={"gray.400"}
+              />
+            }
+            fontWeight={"bold"}
+            placeholder="Artists, songs, or podcasts"
+            placeholderTextColor={"gray.600"}
+            //@ts-ignore
+            onPress={() => {
+              setSearchColor("black");
+            }}
+          />
+        </Box>
 
         {/* Browse Category */}
         <Text color={"white"} fontSize={16} fontWeight={"bold"} my={4}>
@@ -45,7 +60,7 @@ export default function Search({ navigation }: searchProps) {
 
       {/* Bottom navigation */}
       <Box>
-        <BotttomNav navigation={navigation}/>
+        <BotttomNav navigation={navigation} />
       </Box>
     </Box>
   );
