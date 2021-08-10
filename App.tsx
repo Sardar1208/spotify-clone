@@ -3,13 +3,37 @@ import { NativeBaseProvider, Box, Text, Icon } from "native-base";
 import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as VectorIcons from "@expo/vector-icons";
 import HomePage from "./Screens/HomePage";
 import Search from "./Screens/Search";
 import Library from "./Screens/Library";
+import Settings from "./Screens/Settings";
 import { backgroundColor } from "styled-system";
 
 const Tab = createBottomTabNavigator();
+
+const LibraryStack = createNativeStackNavigator();
+
+function LibraryStackScreen() {
+  return (
+    <LibraryStack.Navigator initialRouteName="Library">
+      <LibraryStack.Screen
+        name="Library"
+        component={Library}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <LibraryStack.Screen name="Settings" component={Settings} options={{
+        headerStyle:{backgroundColor:"#383838"},
+        headerTintColor:"white",
+        title:"Settings",
+        headerTitleStyle:{textAlign:"center", flex:1},
+      }}/>
+    </LibraryStack.Navigator>
+  );
+}
 
 export default function App() {
   return (
@@ -53,7 +77,7 @@ export default function App() {
             options={{
               tabBarIcon: ({ focused }) => {
                 let iconName;
-                console.log("focused: ", focused);
+                // console.log("focused: ", focused);
                 return (
                   <Icon
                     as={<VectorIcons.Feather name={"search"} />}
@@ -68,11 +92,11 @@ export default function App() {
           />
           <Tab.Screen
             name="Library"
-            component={Library}
+            component={LibraryStackScreen}
             options={{
               tabBarIcon: ({ focused }) => {
                 let iconName;
-                console.log("focused: ", focused);
+                // console.log("focused: ", focused);
                 return (
                   <Icon
                     as={

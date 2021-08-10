@@ -18,7 +18,11 @@ import {
 } from "native-base";
 import { backgroundColor, color, style } from "styled-system";
 
-export default function Settings() {
+interface settingsProps {
+  navigation: any;
+}
+
+export default function Settings({ navigation }: settingsProps) {
   const [hoverDisplay, sethoverDisplay] = useState("none");
   const [sliderValue, setSliderValue] = useState(0);
 

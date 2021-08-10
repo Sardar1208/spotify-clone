@@ -3,23 +3,45 @@ import ArtistCard from "../Components/ArtistCard";
 import * as VectorIcons from "@expo/vector-icons";
 import SearchCategoryCard from "../Components/SearchCategoryCard";
 import { StyleSheet } from "react-native";
-import { Box, Text, VStack, Image, HStack, Input, Icon } from "native-base";
+import {
+  Box,
+  Text,
+  VStack,
+  Image,
+  HStack,
+  Input,
+  Icon,
+  Pressable,
+} from "native-base";
 import { backgroundColor, color, style } from "styled-system";
+interface libraryProps {
+  navigation: any;
+}
 
-export default function Library() {
+export default function Library({ navigation }: libraryProps) {
   return (
-    <Box safeArea h={"100%"} _web={{ h: "100vh" }} bg={"gray.900"} px={4} pt={4}>
+    <Box
+      safeArea
+      h={"100%"}
+      _web={{ h: "100vh" }}
+      bg={"gray.900"}
+      px={4}
+      pt={4}
+    >
       <HStack alignItems={"center"} justifyContent={"space-between"}>
         <HStack alignItems={"center"} space={4}>
-          <Box
+          <Pressable
             rounded={"full"}
             backgroundColor={"brown"}
-            size={10}
+            size={8}
             justifyContent={"center"}
             alignItems={"center"}
+            onPress={() => {
+              navigation.navigate("Settings");
+            }}
           >
-            <Text>S</Text>
-          </Box>
+            <Text color={"black"} fontWeight={"bold"}>S</Text>
+          </Pressable>
 
           <Text color={"white"} fontSize={22} fontWeight={"bold"}>
             Your Library
@@ -76,9 +98,9 @@ export default function Library() {
             color={"white"}
           />
         </HStack>
-        <ArtistCard name={"The Local Train"}/>
-        <ArtistCard name={"KK"}/>
-        <ArtistCard name={"Arijit Singh"}/>
+        <ArtistCard name={"The Local Train"} />
+        <ArtistCard name={"KK"} />
+        <ArtistCard name={"Arijit Singh"} />
       </VStack>
     </Box>
   );

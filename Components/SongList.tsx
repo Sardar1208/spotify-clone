@@ -42,7 +42,7 @@ export default function SongList({
   }, []);
 
   return (
-    <Box mx={4} mt={4} flex={1}>
+    <Box flex={1}>
       <ListTitle
         // @ts-ignore
         title={title}
