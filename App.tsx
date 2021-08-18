@@ -9,6 +9,8 @@ import HomePage from "./Screens/HomePage";
 import Search from "./Screens/Search";
 import Library from "./Screens/Library";
 import Settings from "./Screens/Settings";
+import Playlist from "./Screens/Playlist";
+import Test from "./Screens/Test";
 import { backgroundColor } from "styled-system";
 
 const Tab = createBottomTabNavigator();
@@ -29,7 +31,6 @@ function LibraryStackScreen() {
         headerStyle:{backgroundColor:"#383838"},
         headerTintColor:"white",
         title:"Settings",
-        headerTitleStyle:{textAlign:"center", flex:1},
       }}/>
     </LibraryStack.Navigator>
   );

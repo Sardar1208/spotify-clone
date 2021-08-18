@@ -55,6 +55,16 @@ export default function Search({ navigation }: searchProps) {
           <SearchCategoryCard />
           <SearchCategoryCard />
         </HStack>
+
+        <HStack space={2} mt={2}>
+          <SearchCategoryCard />
+          <SearchCategoryCard />
+        </HStack>
+
+        <HStack space={2} mt={2}>
+          <SearchCategoryCard />
+          <SearchCategoryCard />
+        </HStack>
       </Box>
 
       {/* Bottom navigation */}
