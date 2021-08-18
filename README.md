@@ -17,3 +17,5 @@ yarn android
 # Run directly on iOS
 yarn ios
 ```
+- demo : 
+<img src="./assets/abcd.gif" width="30%" alt="App Demo Gif"/>
